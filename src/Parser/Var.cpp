@@ -3,6 +3,9 @@
 namespace JL::Parser {
     std::unique_ptr<AST::Var> Var::parse(Token &token)
     {
+        std::size_t tpos = token.save();
+        Many::parse(token, Space::parse);
+        std::cout << token.getRest() << std::endl;
         std::string name = "";
         char c = token.getToken();
 
@@ -17,7 +20,7 @@ namespace JL::Parser {
             c = token.getToken();
         }
         if (name == "")
-            throw std::runtime_error("Expected variable name");
+            token.abort("Expected variable name", tpos);
         return std::make_unique<AST::Var>(name);
     }
 };

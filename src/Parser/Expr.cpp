@@ -3,6 +3,7 @@
 namespace JL::Parser {
     std::unique_ptr<AST::Expr> Expr::parse(Token &token)
     {
+        std::size_t tpos = token.save();
         std::vector<std::function<std::unique_ptr<AST::Expr>()>> parsers = {
             [&]() -> std::unique_ptr<AST::Expr> {
                 return Binop::parse(token);
@@ -21,6 +22,7 @@ namespace JL::Parser {
                 continue;
             }
         }
-        throw Error::Parse("Expected expression");
+        token.abort("Expected expression", tpos);
+        return nullptr; // Never reached
     }
 };

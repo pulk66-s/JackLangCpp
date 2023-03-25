@@ -8,3 +8,5 @@ namespace JL::AST {
     class Var;
     class Callable;
 }
+
+#endif

@@ -7,6 +7,8 @@ SRC			= src/main.cpp \
 			$(PARSER)/Num.cpp \
 			$(PARSER)/Var.cpp \
 			$(PARSER)/Binop.cpp \
+			$(PARSER)/Space.cpp \
+			$(PARSER)/Many.cpp \
 
 CC			= g++
 INCLUDES	= -I $(PARSER) -I src/

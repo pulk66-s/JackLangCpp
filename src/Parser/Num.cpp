@@ -3,6 +3,8 @@
 namespace JL::Parser {
     std::unique_ptr<AST::Num> Num::parse(Token &token)
     {
+        std::size_t tpos = token.save();
+        Many::parse(token, Space::parse);
         char c = token.getToken();
         std::string value = "";
 
@@ -17,7 +19,7 @@ namespace JL::Parser {
             c = token.getToken();
         }
         if (value == "" || value == "-")
-            throw Error::Parse("Expected number, got '" + std::string(1, c) + "'");
+            token.abort("Expected number, got '" + std::string(1, c) + "'", tpos);
         return std::make_unique<AST::Num>(value);
     }
 };

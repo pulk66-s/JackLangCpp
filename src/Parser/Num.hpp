@@ -4,6 +4,8 @@
     #include "AST.hpp"
     #include "Token.hpp"
     #include "Error/Parse.hpp"
+    #include "Many.hpp"
+    #include "Space.hpp"
     #include <memory>
     #include <vector>
     #include <functional>

@@ -2,6 +2,7 @@
     #define __JL_PARSER_TOKEN_HPP__
 
     #include "AST.hpp"
+    #include "Error/Parse.hpp"
     #include <string>
 
 namespace JL::Parser {
@@ -15,6 +16,10 @@ namespace JL::Parser {
 
             char getToken();
             void nextToken();
+            std::string getRest();
+            std::string getContent();
+            std::size_t save();
+            void abort(std::string err, std::size_t recul = 0);
     };
 };
 
