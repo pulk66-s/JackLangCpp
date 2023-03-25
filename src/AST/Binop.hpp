@@ -21,6 +21,13 @@ namespace JL::AST {
                 right->print(os);
                 os << ")";
             }
+            bool operator==(const Expr& other) const override {
+                if (auto otherBinop = dynamic_cast<const Binop*>(&other)) {
+                    return op == otherBinop->op && *left == *otherBinop->left && *right == *otherBinop->right;
+                }
+                return false;
+            }
+
     };
 };
 

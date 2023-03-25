@@ -22,6 +22,15 @@ namespace JL::AST {
         void print(std::ostream& os) const override {
             os << "Num(" << this->value << ")";
         }
+        bool operator==(const Expr& other) const override {
+            if (const Num* num = dynamic_cast<const Num*>(&other)) {
+                return *this == *num;
+            }
+            return false;
+        }
+        bool operator==(double value) const {
+            return this->value == value;
+        }
     };
 }
 

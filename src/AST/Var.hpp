@@ -16,6 +16,15 @@ namespace JL::AST {
         void print(std::ostream& os) const override {
             os << "Var(" << name << ")";
         }
+        bool operator==(const Expr& other) const override {
+            if (auto otherVar = dynamic_cast<const Var*>(&other)) {
+                return name == otherVar->name;
+            }
+            return false;
+        }
+        bool operator==(std::string name) const {
+            return this->name == name;
+        }
     };
 }
 

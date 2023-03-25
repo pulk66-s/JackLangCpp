@@ -1,1 +1,5 @@
 *.o
+jacklang
+jl_unit_tests
+*.gcno
+*.gcda

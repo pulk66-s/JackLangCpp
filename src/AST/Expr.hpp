@@ -13,6 +13,7 @@ namespace JL::AST {
             expr.print(os);
             return os;
         }
+        virtual bool operator==(const Expr& other) const = 0;
     };
 }
 
