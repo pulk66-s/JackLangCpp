@@ -10,11 +10,14 @@
 namespace JL::AST {
     class Num : public Expr {
     private:
-        double value;
+        double value = 0;
     
     public:
         Num(double value): value(value) {};
-        Num(std::string value): value(std::stod(value)) {};
+        Num(std::string value) {
+            std::stringstream ss(value);
+            ss >> this->value;
+        }
 
         void print(std::ostream& os) const override {
             os << "Num(" << this->value << ")";

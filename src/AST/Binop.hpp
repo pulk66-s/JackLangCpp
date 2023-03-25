@@ -10,10 +10,17 @@ namespace JL::AST {
     class Binop : public Expr {
         private:
             char op;
-            std::shared_ptr<Expr> left, right;
+            std::unique_ptr<Expr> left, right;
         
         public:
-            Binop(char op, std::shared_ptr<Expr> left, std::shared_ptr<Expr> right): op(op), left(left), right(right) {}
+            Binop(char op, std::unique_ptr<Expr> left, std::unique_ptr<Expr> right): op(op), left(std::move(left)), right(std::move(right)) {}
+            void print(std::ostream& os) const override {
+                os << "Binop(" << op << ", ";
+                left->print(os);
+                os << ", ";
+                right->print(os);
+                os << ")";
+            }
     };
 };
 

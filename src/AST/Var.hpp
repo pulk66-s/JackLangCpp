@@ -13,6 +13,9 @@ namespace JL::AST {
     
     public:
         Var(std::string name): name(name) {}
+        void print(std::ostream& os) const override {
+            os << "Var(" << name << ")";
+        }
     };
 }
 

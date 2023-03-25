@@ -3,7 +3,10 @@
 
     #include "AST.hpp"
     #include "Token.hpp"
+    #include "Error/Parse.hpp"
     #include <memory>
+    #include <vector>
+    #include <functional>
 
 namespace JL::Parser {
     class Num {

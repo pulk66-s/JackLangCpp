@@ -6,6 +6,9 @@ namespace JL::Parser {
     class Token;
     class Expr;
     class Parser;
+    class Var;
+    class BinOp;
+    class BinopArg;
 };
 
 #endif

@@ -6,6 +6,9 @@
     #include "ParserNamespace.hpp"
     #include "Token.hpp"
     #include "Num.hpp"
+    #include "Var.hpp"
+    #include "Binop.hpp"
+    #include "AST/Expr.hpp"
 
 namespace JL::Parser {
     class Expr {

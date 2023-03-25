@@ -7,6 +7,7 @@
     #include "AST.hpp"
     #include "Token.hpp"
     #include "Expr.hpp"
+    #include "Error/Parse.hpp"
 
 namespace JL::Parser {
     class Parser {

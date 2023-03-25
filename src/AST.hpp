@@ -5,5 +5,6 @@
     #include "AST/Num.hpp"
     #include "AST/Var.hpp"
     #include "AST/Callable.hpp"
+    #include "AST/Binop.hpp"
 
 #endif
