@@ -9,9 +9,11 @@ namespace JL::Parser {
     class Expr;
     class IParser;
     class Parser;
-    class Var;
+    class VarName;
+    class VarDef;
     class BinOp;
     class BinopArg;
+    class Char;
 };
 
 #endif

@@ -9,9 +9,9 @@
     #include <memory>
 
 namespace JL::Parser {
-    class Var {
+    class VarName {
     public:
-        static std::unique_ptr<AST::Var> parse(Token &token);
+        static std::unique_ptr<AST::VarName> parse(Token &token);
     };
 };
 

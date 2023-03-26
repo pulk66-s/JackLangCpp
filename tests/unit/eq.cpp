@@ -8,7 +8,7 @@ void testNum(std::string input, double expected) {
 
 void testVar(std::string input, std::string expected) {
     JL::Parser::Token token(input);
-    auto ast = JL::Parser::Var::parse(token);
+    auto ast = JL::Parser::VarName::parse(token);
     cr_assert(*ast == expected);
 }
 

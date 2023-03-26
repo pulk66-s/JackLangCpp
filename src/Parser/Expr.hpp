@@ -6,7 +6,8 @@
     #include "ParserNamespace.hpp"
     #include "Token.hpp"
     #include "Num.hpp"
-    #include "Var.hpp"
+    #include "VarDef.hpp"
+    #include "VarName.hpp"
     #include "Binop.hpp"
     #include "AST/Expr.hpp"
 

@@ -4,7 +4,8 @@ SRC_FILES	= src/File.cpp \
 			$(PARSER)/Expr.cpp \
 			$(PARSER)/Token.cpp \
 			$(PARSER)/Num.cpp \
-			$(PARSER)/Var.cpp \
+			$(PARSER)/VarName.cpp \
+			$(PARSER)/VarDef.cpp \
 			$(PARSER)/Binop.cpp \
 			$(PARSER)/Space.cpp \
 			$(PARSER)/Many.cpp \

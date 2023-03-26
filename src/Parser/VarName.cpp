@@ -1,7 +1,7 @@
-#include "Var.hpp"
+#include "VarName.hpp"
 
 namespace JL::Parser {
-    std::unique_ptr<AST::Var> Var::parse(Token &token)
+    std::unique_ptr<AST::VarName> VarName::parse(Token &token)
     {
         std::size_t tpos = token.save();
         Many::parse(token, Space::parse);
@@ -21,6 +21,6 @@ namespace JL::Parser {
         }
         if (name == "")
             token.abort("Expected variable name", tpos);
-        return std::make_unique<AST::Var>(name);
+        return std::make_unique<AST::VarName>(name);
     }
 };

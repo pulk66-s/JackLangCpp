@@ -3,21 +3,20 @@
 
     #include "ParserNamespace.hpp"
     #include "AST/Expr.hpp"
-
     #include <string>
 
 namespace JL::AST {
-    class Var : public Expr {
+    class VarName : public Expr {
     private:
         std::string name;
     
     public:
-        Var(std::string name): name(name) {}
+        VarName(std::string name): name(name) {}
         void print(std::ostream& os) const override {
-            os << "Var(" << name << ")";
+            os << "VarName(" << name << ")";
         }
         bool operator==(const Expr& other) const override {
-            if (auto otherVar = dynamic_cast<const Var*>(&other)) {
+            if (auto otherVar = dynamic_cast<const VarName*>(&other)) {
                 return name == otherVar->name;
             }
             return false;

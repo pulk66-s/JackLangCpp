@@ -5,8 +5,11 @@ namespace JL::AST {
     class Expr;
     class Num;
     class Binop;
-    class Var;
+    class VarName;
+    class VarDef;
     class Callable;
+    class FuncDef;
+    class FuncCall;
 }
 
 #endif

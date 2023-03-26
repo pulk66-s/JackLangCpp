@@ -38,4 +38,11 @@ namespace JL::Parser {
         this->pos = recul;
         throw Error::Parse(err);
     }
+
+    void Token::expect(char c)
+    {
+        if (this->getToken() != c)
+            this->abort("Expected '" + std::string(1, c) + "' but got '" + std::string(1, this->getToken()) + "'", this->pos);
+        this->nextToken();
+    }
 };

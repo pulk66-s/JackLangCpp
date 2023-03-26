@@ -9,7 +9,7 @@ namespace JL::Parser {
                 return Num::parse(token);
             },
             [&]() -> std::unique_ptr<AST::Expr> {
-                return Var::parse(token);
+                return VarName::parse(token);
             }
         };
         for (auto parser : parsers) {
@@ -34,7 +34,7 @@ namespace JL::Parser {
                 return Num::parse(token);
             },
             [&]() -> std::unique_ptr<AST::Expr> {
-                return Var::parse(token);
+                return VarName::parse(token);
             }
         };
         for (auto parser : parsers) {
