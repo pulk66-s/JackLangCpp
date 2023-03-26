@@ -3,6 +3,7 @@
 
     #include "ParserNamespace.hpp"
     #include "AST/Expr.hpp"
+    #include "LLVM.hpp"
     #include <string>
     #include <sstream>
     #include <iostream>
@@ -13,24 +14,12 @@ namespace JL::AST {
         double value = 0;
     
     public:
-        Num(double value): value(value) {};
-        Num(std::string value) {
-            std::stringstream ss(value);
-            ss >> this->value;
-        }
-
-        void print(std::ostream& os) const override {
-            os << "Num(" << this->value << ")";
-        }
-        bool operator==(const Expr& other) const override {
-            if (const Num* num = dynamic_cast<const Num*>(&other)) {
-                return *this == *num;
-            }
-            return false;
-        }
-        bool operator==(double value) const {
-            return this->value == value;
-        }
+        Num(double value);
+        Num(std::string value);
+        void print(std::ostream& os) const;
+        bool operator==(const Expr& other) const;
+        bool operator==(double value) const;
+        void gen(struct llvm_context llvm);
     };
 }
 

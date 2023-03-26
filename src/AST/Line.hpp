@@ -2,6 +2,7 @@
     #define __JL_AST_LINE_HPP__
 
     #include "Expr.hpp"
+    #include "LLVM.hpp"
     #include "ASTNamespace.hpp"
     #include <memory>
     #include <iostream>
@@ -12,18 +13,10 @@ namespace JL::AST {
             std::unique_ptr<Expr> expr = nullptr;
         
         public:
-            Line(std::unique_ptr<Expr> expr): expr(std::move(expr)) {};
-            void print(std::ostream &os) const {
-                os << "Line (";
-                expr->print(os);
-                os << ")";
-            }
-            bool operator==(const Expr &other) const {
-                if (const Line* line = dynamic_cast<const Line*>(&other)) {
-                    return *this == *line;
-                }
-                return false;
-            }
+            Line(std::unique_ptr<Expr> expr);
+            void print(std::ostream &os) const;
+            bool operator==(const Expr &other) const;
+            void gen(struct llvm_context llvm);
     };
 };
 

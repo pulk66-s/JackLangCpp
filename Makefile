@@ -1,4 +1,6 @@
 PARSER 		= src/Parser
+LLVM		= src/LLVM
+AST			= src/AST
 SRC_FILES	= src/File.cpp \
 			$(PARSER)/Parser.cpp \
 			$(PARSER)/Expr.cpp \
@@ -14,6 +16,22 @@ SRC_FILES	= src/File.cpp \
 			$(PARSER)/Line.cpp \
 			$(PARSER)/FuncCall.cpp \
 			$(PARSER)/Either.cpp \
+			$(LLVM)/Context.cpp \
+			$(LLVM)/Block.cpp \
+			$(LLVM)/IRBuilder.cpp \
+			$(LLVM)/Module.cpp \
+			$(LLVM)/Type.cpp \
+			$(LLVM)/Types/Int.cpp \
+			$(LLVM)/Function.cpp \
+			$(LLVM)/FunctionType.cpp \
+			$(AST)/FuncDef.cpp \
+			$(AST)/Line.cpp \
+			$(AST)/Num.cpp \
+			$(AST)/VarDef.cpp \
+			$(AST)/VarName.cpp \
+			$(AST)/Binop.cpp \
+			$(AST)/FuncCall.cpp \
+			$(AST)/Char.cpp
 
 SRC			= src/main.cpp \
 			$(SRC_FILES)
@@ -21,7 +39,8 @@ SRC			= src/main.cpp \
 CC			= g++
 INCLUDES	= -I $(PARSER) -I src/
 DEBUG		= -W -Wall -Wextra -g3
-CPPFLAGS	= $(INCLUDES) $(DEBUG) -O3
+LLVM_FLAGS	= -lLLVM-15 -I/usr/include
+CPPFLAGS	= $(INCLUDES) $(DEBUG) $(LLVM_FLAGS) -O3
 
 UTESTS		= tests/unit
 TESTS_SRC	= $(SRC_FILES) \
@@ -39,7 +58,7 @@ NAME		= jacklang
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(OBJ)
+	$(CC) -o $(NAME) $(OBJ) $(CPPFLAGS)
 
 clean:
 	$(RM) *.gcda

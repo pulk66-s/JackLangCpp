@@ -2,6 +2,7 @@
     #define __JL_PARSER_AST_EXPR_HPP__
 
     #include "ParserNamespace.hpp"
+    #include "LLVM.hpp"
     #include <iostream>
 
 namespace JL::AST {
@@ -14,6 +15,7 @@ namespace JL::AST {
             return os;
         }
         virtual bool operator==(const Expr& other) const = 0;
+        virtual void gen(struct llvm_context llvm) = 0;
     };
 }
 

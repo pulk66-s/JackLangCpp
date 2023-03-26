@@ -1,5 +1,21 @@
 #include "Parser.hpp"
 #include "File.hpp"
+#include "AST.hpp"
+#include "LLVM.hpp"
+#include <memory>
+
+void genllvm(std::unique_ptr<JL::AST::Expr> expr)
+{
+    std::unique_ptr<JL::LLVM::Context> context = std::make_unique<JL::LLVM::Context>();
+    std::unique_ptr<JL::LLVM::IRBuilder> builder = std::make_unique<JL::LLVM::IRBuilder>(*context);
+    std::unique_ptr<JL::LLVM::Module> mod = std::make_unique<JL::LLVM::Module>("test", *context);
+    struct llvm_context llvm = {
+        .context = std::move(context),
+        .builder = std::move(builder),
+        .mod = std::move(mod)
+    };
+    expr->gen(llvm);
+}
 
 int main(int ac, char **av)
 {
@@ -9,6 +25,7 @@ int main(int ac, char **av)
         try {
             std::unique_ptr<JL::AST::Expr> expr = parser.launch();
             std::cout << *expr << std::endl;
+            genllvm(std::move(expr));
         } catch (JL::Error::Parse &e) {
             // std::cout << e.what() << std::endl;
         }

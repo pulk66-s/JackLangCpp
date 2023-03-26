@@ -3,6 +3,7 @@
 
     #include "ASTNamespace.hpp"
     #include "Expr.hpp"
+    #include "LLVM.hpp"
     #include <iostream>
 
 namespace JL::AST {
@@ -11,16 +12,10 @@ namespace JL::AST {
             char value;
 
         public:
-            Char(char value): value(value) {};
-            void print(std::ostream& os) const {
-                os << "Char(" << this->value << ")";
-            }
-            bool operator==(const Expr& other) const {
-                if (const Char* num = dynamic_cast<const Char*>(&other)) {
-                    return *this == *num;
-                }
-                return false;
-            }
+            Char(char value);
+            void print(std::ostream& os) const;
+            bool operator==(const Expr& other) const;
+            void gen(struct llvm_context llvm);
     };
 };
 
