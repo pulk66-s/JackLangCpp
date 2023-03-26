@@ -10,5 +10,6 @@
     #include "AST/Binop.hpp"
     #include "AST/Char.hpp"
     #include "AST/FuncDef.hpp"
+    #include "AST/FuncCall.hpp"
 
 #endif

@@ -5,7 +5,6 @@
     #include "Expr.hpp"
     #include "VarName.hpp"
 
-
     #include <memory>
     #include <vector>
 
@@ -27,6 +26,12 @@ namespace JL::AST {
                     os << ", ";
                 }
                 os << "])";
+            }
+            bool operator==(const Expr &other) const {
+                if (auto otherFuncCall = dynamic_cast<const FuncCall *>(&other)) {
+                    return *this->name == *otherFuncCall->name && this->args == otherFuncCall->args;
+                }
+                return false;
             }
     };
 };

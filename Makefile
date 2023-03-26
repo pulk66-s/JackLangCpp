@@ -12,6 +12,7 @@ SRC_FILES	= src/File.cpp \
 			$(PARSER)/Char.cpp \
 			$(PARSER)/Many.cpp \
 			$(PARSER)/Line.cpp \
+			$(PARSER)/FuncCall.cpp \
 			$(PARSER)/Either.cpp \
 
 SRC			= src/main.cpp \

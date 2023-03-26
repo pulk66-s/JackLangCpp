@@ -18,6 +18,7 @@ namespace JL::Parser {
     class BinopArg;
     class Char;
     class FuncDef;
+    class FuncCall;
 };
 
 #endif

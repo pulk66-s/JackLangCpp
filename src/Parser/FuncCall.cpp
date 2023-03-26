@@ -1,7 +1,7 @@
-#include "VarDef.hpp"
+#include "FuncCall.hpp"
 
 namespace JL::Parser {
-    std::unique_ptr<AST::Expr> VarDef::parseValue(Token &token)
+    std::unique_ptr<AST::Expr> FuncCall::parseArg(Token &token)
     {
         std::size_t tpos = token.save();
         std::vector<std::function<std::unique_ptr<AST::Expr>()>> parsers = {
@@ -25,36 +25,42 @@ namespace JL::Parser {
                 continue;
             }
         }
-        token.abort("Expected expression", tpos);
-        return nullptr; // Never reached
+        token.abort("Expected Line", tpos);
+        return nullptr; // never reached
     }
 
-    std::unique_ptr<AST::VarDef> VarDef::parse(Token& token)
+    std::unique_ptr<AST::FuncCall> FuncCall::parse(Token &token)
     {
-        size_t tpos = token.save();
+        std::size_t tpos = token.save();
         Many::parse(token, Space::parse);
         std::unique_ptr<AST::VarName> name = nullptr;
-        std::unique_ptr<AST::Expr> value = nullptr;
-
         try {
             name = VarName::parse(token);
-        } catch (Error::Parse &e) {
-            token.abort("Expected variable name", tpos);
-        }
-
-        Many::parse(token, Space::parse);
-        try {
-            token.expect('=');
         } catch (Error::Parse &e) {
             token.abort(e.what(), tpos);
         }
         Many::parse(token, Space::parse);
-
         try {
-            value = VarDef::parseValue(token);
+            token.expect('(');
         } catch (Error::Parse &e) {
-            token.abort("Expected variable value", tpos);
+            token.abort(e.what(), tpos);
         }
-        return std::make_unique<AST::VarDef>(std::move(name), std::move(value));
+        Many::parse(token, Space::parse);
+        std::vector<std::unique_ptr<AST::Expr>> args = {};
+        try {
+            while (true) {
+                std::unique_ptr<AST::Expr> expr = FuncCall::parseArg(token);
+                args.push_back(std::move(expr));
+                Many::parse(token, Space::parse);
+                token.expect(',');
+                Many::parse(token, Space::parse);
+            }
+        } catch (Error::Parse &e) {}
+        try {
+            token.expect(')');
+        } catch (Error::Parse &e) {
+            token.abort(e.what(), ')');
+        }
+        return std::make_unique<AST::FuncCall>(std::move(name), std::move(args));
     }
 };

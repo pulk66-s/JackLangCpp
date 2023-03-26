@@ -6,6 +6,9 @@ namespace JL::Parser {
         std::size_t tpos = token.save();
         std::vector<std::function<std::unique_ptr<AST::Expr>()>> parsers = {
             [&]() -> std::unique_ptr<AST::Expr> {
+                return FuncCall::parse(token);
+            },
+            [&]() -> std::unique_ptr<AST::Expr> {
                 return VarDef::parse(token);
             },
             [&]() -> std::unique_ptr<AST::Expr> {

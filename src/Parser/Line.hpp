@@ -6,6 +6,7 @@
     #include <vector>
     #include "VarDef.hpp"
     #include "Num.hpp"
+    #include "FuncCall.hpp"
     #include "VarName.hpp"
     #include "Binop.hpp"
     #include "AST.hpp"

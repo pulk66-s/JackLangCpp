@@ -7,6 +7,7 @@
     #include "Many.hpp"
     #include "Space.hpp"
     #include "VarName.hpp"
+    #include "FuncCall.hpp"
     #include "Token.hpp"
 
 namespace JL::Parser {
