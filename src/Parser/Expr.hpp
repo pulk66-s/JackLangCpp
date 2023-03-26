@@ -7,7 +7,9 @@
     #include "Token.hpp"
     #include "Num.hpp"
     #include "VarDef.hpp"
+    #include "FuncDef.hpp"
     #include "VarName.hpp"
+    #include "Line.hpp"
     #include "Binop.hpp"
     #include "AST/Expr.hpp"
 

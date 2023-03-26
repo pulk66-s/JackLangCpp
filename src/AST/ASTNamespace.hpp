@@ -6,6 +6,7 @@ namespace JL::AST {
     class Num;
     class Binop;
     class VarName;
+    class Line;
     class VarDef;
     class Callable;
     class FuncDef;

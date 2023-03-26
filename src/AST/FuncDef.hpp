@@ -33,6 +33,12 @@ namespace JL::AST {
                 }
                 os << "])";
             }
+            bool operator==(const Expr &other) const {
+                if (auto otherFuncDef = dynamic_cast<const FuncDef*>(&other)) {
+                    return *name == *otherFuncDef->name && args == otherFuncDef->args && body == otherFuncDef->body;
+                }
+                return false;
+            }
     };
 };
 

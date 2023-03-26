@@ -4,11 +4,15 @@ SRC_FILES	= src/File.cpp \
 			$(PARSER)/Expr.cpp \
 			$(PARSER)/Token.cpp \
 			$(PARSER)/Num.cpp \
+			$(PARSER)/FuncDef.cpp \
 			$(PARSER)/VarName.cpp \
 			$(PARSER)/VarDef.cpp \
 			$(PARSER)/Binop.cpp \
 			$(PARSER)/Space.cpp \
+			$(PARSER)/Char.cpp \
 			$(PARSER)/Many.cpp \
+			$(PARSER)/Line.cpp \
+			$(PARSER)/Either.cpp \
 
 SRC			= src/main.cpp \
 			$(SRC_FILES)

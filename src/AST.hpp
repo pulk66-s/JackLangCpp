@@ -6,7 +6,9 @@
     #include "AST/VarName.hpp"
     #include "AST/VarDef.hpp"
     #include "AST/Callable.hpp"
+    #include "AST/Line.hpp"
     #include "AST/Binop.hpp"
     #include "AST/Char.hpp"
+    #include "AST/FuncDef.hpp"
 
 #endif

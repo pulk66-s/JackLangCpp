@@ -40,7 +40,11 @@ namespace JL::Parser {
         }
 
         Many::parse(token, Space::parse);
-        token.expect('=');
+        try {
+            token.expect('=');
+        } catch (Error::Parse &e) {
+            token.abort(e.what(), tpos);
+        }
         Many::parse(token, Space::parse);
 
         try {

@@ -5,7 +5,6 @@ namespace JL::Parser {
     {
         std::size_t tpos = token.save();
         Many::parse(token, Space::parse);
-        std::cout << token.getRest() << std::endl;
         std::string name = "";
         char c = token.getToken();
 

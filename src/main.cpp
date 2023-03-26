@@ -10,7 +10,7 @@ int main(int ac, char **av)
             std::unique_ptr<JL::AST::Expr> expr = parser.launch();
             std::cout << *expr << std::endl;
         } catch (JL::Error::Parse &e) {
-            std::cout << e.what() << std::endl;
+            // std::cout << e.what() << std::endl;
         }
     }
     return 0;

@@ -4,6 +4,9 @@
 namespace JL::Parser {
     class Space;
     class Many;
+    class Either;
+    class Line;
+    class Char;
     class Num;
     class Token;
     class Expr;
@@ -14,6 +17,7 @@ namespace JL::Parser {
     class BinOp;
     class BinopArg;
     class Char;
+    class FuncDef;
 };
 
 #endif
