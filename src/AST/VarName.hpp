@@ -10,11 +10,10 @@
 namespace JL::AST {
     class VarName : public Expr {
     private:
-        std::unique_ptr<Type> type;
         std::string name;
     
     public:
-        VarName(std::unique_ptr<Type> type, std::string name);
+        VarName(std::string name);
         void print(std::ostream& os) const;
         bool operator==(const Expr& other) const;
         bool operator==(std::string name) const;

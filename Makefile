@@ -33,6 +33,8 @@ SRC_FILES	= src/File.cpp \
 			$(LLVM)/NamedInstruction.cpp \
 			$(LLVM)/Operand.cpp \
 			$(LLVM)/Ret.cpp \
+			$(LLVM)/Alloca.cpp \
+			$(LLVM)/Store.cpp \
 			$(AST)/Type.cpp \
 			$(AST)/FuncDef.cpp \
 			$(AST)/Ret.cpp \

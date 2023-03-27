@@ -19,7 +19,7 @@ namespace JL::Parser {
                 continue;
             }
         }
-        token.abort("Expected expression", tpos);
+        token.abort("Expected expression 1", tpos);
         return nullptr; // Never reached
     }
 };

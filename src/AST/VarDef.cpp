@@ -26,7 +26,9 @@ namespace JL::AST {
 
     std::unique_ptr<LLVM::Operand> VarDef::gen(struct JL::LLVM::llvm_context llvm)
     {
-        // TODO
+        std::string name = this->name->getName();
+        std::unique_ptr<LLVM::Operand> value = this->value->gen(llvm);
+        std::unique_ptr<LLVM::Alloca> alloca = std::make_unique<LLVM::Alloca>(llvm, std::move(value));
         return nullptr;
     }
 };

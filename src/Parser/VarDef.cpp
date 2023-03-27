@@ -32,10 +32,18 @@ namespace JL::Parser {
     std::unique_ptr<AST::VarDef> VarDef::parse(Token& token)
     {
         size_t tpos = token.save();
-        Many::parse(token, Space::parse);
+        std::unique_ptr<AST::Type> type = nullptr;
         std::unique_ptr<AST::VarName> name = nullptr;
         std::unique_ptr<AST::Expr> value = nullptr;
 
+        Many::parse(token, Space::parse);
+        try {
+            type = Type::parse(token);
+        } catch (Error::Parse &e) {
+            token.abort("Expected type", tpos);
+        }
+
+        Many::parse(token, Space::parse);
         try {
             name = VarName::parse(token);
         } catch (Error::Parse &e) {

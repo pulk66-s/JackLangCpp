@@ -14,5 +14,7 @@
     #include "LLVM/Types/Int.hpp"
     #include "LLVM/Constant.hpp"
     #include "LLVM/Ret.hpp"
+    #include "LLVM/Alloca.hpp"
+    #include "LLVM/Store.hpp"
 
 #endif

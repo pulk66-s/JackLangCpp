@@ -8,7 +8,9 @@ namespace JL::Parser {
         try {
             token.expect("int");
             return std::make_unique<AST::Type>("int");
-        } catch (std::runtime_error &e) {}
-        throw std::runtime_error("Expected type");
+        } catch (std::runtime_error &e) {
+            token.abort("Expected type", tpos);
+        }
+        return nullptr; // Never reached
     }
 };

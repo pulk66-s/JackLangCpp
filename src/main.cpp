@@ -30,7 +30,7 @@ int main(int ac, char **av)
             std::cout << *expr << std::endl;
             genllvm(std::move(expr));
         } catch (JL::Error::Parse &e) {
-            // std::cout << e.what() << std::endl;
+            std::cout << e.what() << std::endl;
         }
     }
     return 0;

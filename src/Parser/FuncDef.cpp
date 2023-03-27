@@ -4,22 +4,35 @@ namespace JL::Parser {
     std::unique_ptr<AST::FuncDef> FuncDef::parse(Token &token)
     {
         std::size_t tpos = token.save();
-        Many::parse(token, Space::parse);
+        std::unique_ptr<AST::Type> type = nullptr;
         std::unique_ptr<AST::VarName> name = nullptr;
+        std::vector<std::unique_ptr<AST::VarName>> args = {};
+        std::vector<std::unique_ptr<AST::Expr>> body = {};
+
+        Many::parse(token, Space::parse);
+        try {
+            type = Type::parse(token);
+        } catch (Error::Parse &e) {
+            std::cerr << e.what() << std::endl;
+            token.abort("Expected function return type", tpos);
+        }
+
+        Many::parse(token, Space::parse);
         try {
             name = VarName::parse(token);
         } catch (Error::Parse &e) {
             std::cerr << e.what() << std::endl;
             token.abort("Expected function name", tpos);
         }
+
         Many::parse(token, Space::parse);
         try {
             token.expect('(');
         } catch (Error::Parse &e) {
             token.abort(e.what(), tpos);
         }
+
         Many::parse(token, Space::parse);
-        std::vector<std::unique_ptr<AST::VarName>> args = {};
         try {
             while (true) {
                 args.push_back(VarName::parse(token));
@@ -28,6 +41,7 @@ namespace JL::Parser {
                 Many::parse(token, Space::parse);
             }
         } catch (Error::Parse &e) {}
+
         Many::parse(token, Space::parse);
         try {
             token.expect(')');
@@ -37,7 +51,8 @@ namespace JL::Parser {
         } catch (Error::Parse &e) {
             token.abort(e.what(), tpos);
         }
-        std::vector<std::unique_ptr<AST::Expr>> body = {};
+
+        Many::parse(token, Space::parse);
         try {
             body = Many::parse(token, Expr::parse);
             Many::parse(token, Space::parse);
@@ -45,6 +60,8 @@ namespace JL::Parser {
             std::cerr << e.what() << std::endl;
             token.abort("Expected function body", tpos);
         }
+
+        Many::parse(token, Space::parse);
         try {
             token.expect('}');
         } catch (Error::Parse &e) {

@@ -1,9 +1,8 @@
 #include "VarName.hpp"
 
 namespace JL::AST {
-    VarName::VarName(std::unique_ptr<Type> type, std::string name)
+    VarName::VarName(std::string name)
     {
-        this->type = std::move(type);
         this->name = name;
     }
 
@@ -27,7 +26,7 @@ namespace JL::AST {
 
     std::unique_ptr<LLVM::Operand> VarName::gen(struct JL::LLVM::llvm_context llvm)
     {
-        // TODO
+        return nullptr;
     }
 
     std::string VarName::getName() const
