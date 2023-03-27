@@ -16,6 +16,7 @@ SRC_FILES	= src/File.cpp \
 			$(PARSER)/Line.cpp \
 			$(PARSER)/FuncCall.cpp \
 			$(PARSER)/Either.cpp \
+			$(PARSER)/Ret.cpp \
 			$(LLVM)/Context.cpp \
 			$(LLVM)/Block.cpp \
 			$(LLVM)/IRBuilder.cpp \
@@ -24,7 +25,15 @@ SRC_FILES	= src/File.cpp \
 			$(LLVM)/Types/Int.cpp \
 			$(LLVM)/Function.cpp \
 			$(LLVM)/FunctionType.cpp \
+			$(LLVM)/NameGenerator.cpp \
+			$(LLVM)/Operation.cpp \
+			$(LLVM)/Constant.cpp \
+			$(LLVM)/Instruction.cpp \
+			$(LLVM)/NamedInstruction.cpp \
+			$(LLVM)/Operand.cpp \
+			$(LLVM)/Ret.cpp \
 			$(AST)/FuncDef.cpp \
+			$(AST)/Ret.cpp \
 			$(AST)/Line.cpp \
 			$(AST)/Num.cpp \
 			$(AST)/VarDef.cpp \

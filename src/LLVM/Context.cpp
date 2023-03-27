@@ -6,8 +6,8 @@ namespace JL::LLVM {
         this->context = std::make_shared<llvm::LLVMContext>();
     }
 
-    std::shared_ptr<llvm::LLVMContext> Context::get()
+    llvm::LLVMContext *Context::get()
     {
-        return this->context;
+        return this->context.get();
     }
 }

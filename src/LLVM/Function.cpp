@@ -5,4 +5,9 @@ namespace JL::LLVM {
     {
         this->func = llvm::Function::Create(type.get(), llvm::Function::ExternalLinkage, name, module.get());
     }
+
+    llvm::Function *Function::get()
+    {
+        return this->func;
+    }
 };

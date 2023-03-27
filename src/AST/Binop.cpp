@@ -25,8 +25,22 @@ namespace JL::AST {
         return false;
     }
 
-    void Binop::gen(struct llvm_context llvm)
+    std::unique_ptr<LLVM::Operand> Binop::gen(struct JL::LLVM::llvm_context llvm)
     {
-        // TODO
+        // std::shared_ptr<LLVM::Block> block = llvm.builder->getBlock();
+        // std::unique_ptr<LLVM::Operand> leftInstruction = left->gen(llvm);
+        // std::unique_ptr<LLVM::Operand> rightInstruction = right->gen(llvm);
+        // std::unique_ptr<LLVM::Operation> operation = std::make_unique<LLVM::Operation>(
+        //     *llvm.builder,
+        //     op,
+        //     *leftInstruction,
+        //     *rightInstruction
+        // );
+        // std::unique_ptr<LLVM::Operand> instruction = std::make_unique<LLVM::NamedInstruction>(
+        //     std::move(operation),
+        //     llvm.nameGenerator->binop()
+        // );  
+
+        throw Error::NotImplemented("Binop::gen");
     }
 }

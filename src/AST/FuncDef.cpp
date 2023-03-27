@@ -39,8 +39,21 @@ namespace JL::AST {
         return false;
     }
 
-    void FuncDef::gen(struct llvm_context llvm)
+    std::unique_ptr<LLVM::Operand> FuncDef::gen(struct JL::LLVM::llvm_context llvm)
     {
-        // TODO
+        std::string name = this->name->getName();
+        std::unique_ptr<LLVM::Types::Int> retType = std::make_unique<LLVM::Types::Int>(*(llvm.context));
+        std::vector<std::unique_ptr<LLVM::Type>> args = {};
+        for (auto& arg : this->args) {
+            args.push_back(std::make_unique<LLVM::Types::Int>(*(llvm.context)));
+        }
+        LLVM::FunctionType funcType(std::move(retType), std::move(args));
+        std::unique_ptr<LLVM::Function> func = std::make_unique<LLVM::Function>(funcType, name, *(llvm.mod));
+        std::unique_ptr<LLVM::Block> block = std::make_unique<LLVM::Block>(*(llvm.context), "entry", std::move(func));
+        llvm.builder->setInsertBlock(std::move(block));
+        for (auto& expr : body) {
+            expr->gen(llvm);
+        }
+        return nullptr;
     }
 };

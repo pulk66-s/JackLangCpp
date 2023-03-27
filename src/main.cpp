@@ -6,15 +6,18 @@
 
 void genllvm(std::unique_ptr<JL::AST::Expr> expr)
 {
-    std::unique_ptr<JL::LLVM::Context> context = std::make_unique<JL::LLVM::Context>();
-    std::unique_ptr<JL::LLVM::IRBuilder> builder = std::make_unique<JL::LLVM::IRBuilder>(*context);
-    std::unique_ptr<JL::LLVM::Module> mod = std::make_unique<JL::LLVM::Module>("test", *context);
-    struct llvm_context llvm = {
-        .context = std::move(context),
-        .builder = std::move(builder),
-        .mod = std::move(mod)
+    std::shared_ptr<JL::LLVM::Context> context = std::make_shared<JL::LLVM::Context>();
+    std::shared_ptr<JL::LLVM::IRBuilder> builder = std::make_shared<JL::LLVM::IRBuilder>(*context);
+    std::shared_ptr<JL::LLVM::Module> mod = std::make_shared<JL::LLVM::Module>("test", *context);
+    std::shared_ptr<JL::LLVM::NameGenerator> nameGenerator = std::make_shared<JL::LLVM::NameGenerator>();
+    struct JL::LLVM::llvm_context llvm = {
+        .context = context,
+        .builder = builder,
+        .mod = mod,
+        .nameGenerator = nameGenerator
     };
     expr->gen(llvm);
+    llvm.mod->print();
 }
 
 int main(int ac, char **av)

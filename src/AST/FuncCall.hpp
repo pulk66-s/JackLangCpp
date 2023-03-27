@@ -19,7 +19,7 @@ namespace JL::AST {
             FuncCall(std::unique_ptr<VarName> name, std::vector<std::unique_ptr<Expr>> args);
             void print(std::ostream& os) const;
             bool operator==(const Expr &other) const;
-            void gen(struct llvm_context llvm);
+            std::unique_ptr<LLVM::Operand> gen(struct JL::LLVM::llvm_context llvm);
     };
 };
 

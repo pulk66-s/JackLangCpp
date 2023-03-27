@@ -12,7 +12,7 @@ namespace JL::LLVM {
 
         public:
             Context();
-            std::shared_ptr<llvm::LLVMContext> get();
+            llvm::LLVMContext *get();
     };
 };
 

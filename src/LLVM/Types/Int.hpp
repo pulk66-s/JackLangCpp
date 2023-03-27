@@ -9,6 +9,7 @@ namespace JL::LLVM::Types {
     class Int : public Type {
         public:
             Int(Context ctx);
+            static bool is(Type type);
     };
 }
 

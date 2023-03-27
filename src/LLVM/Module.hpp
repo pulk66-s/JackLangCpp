@@ -23,5 +23,4 @@ namespace JL::LLVM {
     };
 };
 
-
 #endif

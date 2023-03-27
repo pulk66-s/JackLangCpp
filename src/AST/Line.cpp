@@ -21,8 +21,8 @@ namespace JL::AST {
         return false;
     }
 
-    void Line::gen(struct llvm_context llvm)
+    std::unique_ptr<LLVM::Operand> Line::gen(struct JL::LLVM::llvm_context llvm)
     {
-        expr->gen(llvm);
+        return expr->gen(llvm);
     }
 }

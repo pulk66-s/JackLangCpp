@@ -45,4 +45,11 @@ namespace JL::Parser {
             this->abort("Expected '" + std::string(1, c) + "' but got '" + std::string(1, this->getToken()) + "'", this->pos);
         this->nextToken();
     }
+
+    void Token::expect(std::string str)
+    {
+        if (this->getRest().substr(0, str.length()) != str)
+            this->abort("Expected '" + str + "' but got '" + this->getRest().substr(0, str.length()) + "'", this->pos);
+        this->pos += str.length();
+    }
 };

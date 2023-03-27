@@ -9,6 +9,9 @@ namespace JL::Parser {
                 return FuncCall::parse(token);
             },
             [&]() -> std::unique_ptr<AST::Expr> {
+                return Ret::parse(token);
+            },
+            [&]() -> std::unique_ptr<AST::Expr> {
                 return VarDef::parse(token);
             },
             [&]() -> std::unique_ptr<AST::Expr> {

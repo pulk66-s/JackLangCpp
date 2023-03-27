@@ -16,6 +16,7 @@ namespace JL::LLVM {
 
         public:
             Function(FunctionType type, std::string name, Module module);
+            llvm::Function *get();
     };
 };
 

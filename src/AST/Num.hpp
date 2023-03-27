@@ -16,10 +16,15 @@ namespace JL::AST {
     public:
         Num(double value);
         Num(std::string value);
+
         void print(std::ostream& os) const;
+        std::unique_ptr<LLVM::Operand> gen(struct JL::LLVM::llvm_context llvm);
+        static bool is(Expr *expr);
+
         bool operator==(const Expr& other) const;
         bool operator==(double value) const;
-        void gen(struct llvm_context llvm);
+
+        double get() const;
     };
 }
 

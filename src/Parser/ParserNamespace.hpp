@@ -15,6 +15,8 @@ namespace JL::Parser {
     class VarName;
     class VarDef;
     class BinOp;
+    class Ret;
+    class String;
     class BinopArg;
     class Char;
     class FuncDef;

@@ -14,7 +14,7 @@ namespace JL::LLVM {
             llvm::FunctionType *type = nullptr;
 
         public:
-            FunctionType(LLVM::Type retType, std::vector<LLVM::Type> args);
+            FunctionType(std::unique_ptr<LLVM::Type> retType, std::vector<std::unique_ptr<LLVM::Type>> args);
 
             llvm::FunctionType *get();
     };

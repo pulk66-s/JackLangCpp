@@ -20,6 +20,7 @@ namespace JL::Parser {
             std::string getContent();
             std::size_t save();
             void expect(char c);
+            void expect(std::string str);
             void abort(std::string err, std::size_t recul = 0);
     };
 };

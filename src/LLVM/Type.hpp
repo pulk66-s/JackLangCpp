@@ -13,6 +13,8 @@ namespace JL::LLVM {
             std::string name = "";
 
         public:
+            Type(llvm::Type *type);
+
             llvm::Type *get();
             std::string getName();
     };

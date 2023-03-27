@@ -4,12 +4,16 @@
     #include "Context.hpp"
     #include "IRBuilder.hpp"
     #include "Module.hpp"
+    #include "NameGenerator.hpp"
     #include <memory>
 
-struct llvm_context {
-    std::unique_ptr<JL::LLVM::Context> context;
-    std::unique_ptr<JL::LLVM::IRBuilder> builder;
-    std::unique_ptr<JL::LLVM::Module> mod;
+namespace JL::LLVM {
+    struct llvm_context {
+        std::shared_ptr<JL::LLVM::Context> context;
+        std::shared_ptr<JL::LLVM::IRBuilder> builder;
+        std::shared_ptr<JL::LLVM::Module> mod;
+        std::shared_ptr<JL::LLVM::NameGenerator> nameGenerator;
+    };
 };
 
 #endif

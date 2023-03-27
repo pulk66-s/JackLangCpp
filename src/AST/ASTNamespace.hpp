@@ -11,6 +11,7 @@ namespace JL::AST {
     class Callable;
     class FuncDef;
     class FuncCall;
+    class Ret;
 }
 
 #endif

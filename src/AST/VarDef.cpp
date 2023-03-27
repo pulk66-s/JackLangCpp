@@ -24,8 +24,9 @@ namespace JL::AST {
         return false;
     }
 
-    void VarDef::gen(struct llvm_context llvm)
+    std::unique_ptr<LLVM::Operand> VarDef::gen(struct JL::LLVM::llvm_context llvm)
     {
         // TODO
+        return nullptr;
     }
 };

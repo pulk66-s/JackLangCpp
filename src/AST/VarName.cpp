@@ -24,8 +24,13 @@ namespace JL::AST {
         return this->name == name;
     }
 
-    void VarName::gen(struct llvm_context llvm)
+    std::unique_ptr<LLVM::Operand> VarName::gen(struct JL::LLVM::llvm_context llvm)
     {
         // TODO
+    }
+
+    std::string VarName::getName() const
+    {
+        return name;
     }
 }

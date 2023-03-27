@@ -15,7 +15,7 @@ namespace JL::AST {
             return os;
         }
         virtual bool operator==(const Expr& other) const = 0;
-        virtual void gen(struct llvm_context llvm) = 0;
+        virtual std::unique_ptr<LLVM::Operand> gen(struct JL::LLVM::llvm_context llvm) = 0;
     };
 }
 

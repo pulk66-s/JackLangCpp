@@ -9,6 +9,13 @@ namespace JL::LLVM {
     class Function;
     class FunctionType;
     class Type;
+    class Operand;
+    class Operation;
+    class Constant;
+    class NameGenerator;
+    class Instruction;
+    class Ret;
+    // class NamedInstruction;
     namespace Types {
         class Int;
     }

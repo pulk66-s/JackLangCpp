@@ -30,8 +30,23 @@ namespace JL::AST {
         return this->value == value;
     }
 
-    void Num::gen(struct llvm_context llvm)
+    std::unique_ptr<LLVM::Operand> Num::gen(struct JL::LLVM::llvm_context llvm)
     {
-        // TODO
+        std::unique_ptr<LLVM::Constant> constant = std::make_unique<LLVM::Constant>(
+            llvm,
+            std::make_unique<LLVM::Types::Int>(*llvm.context),
+            this->value
+        );
+        return std::move(constant);
+    }
+
+    bool Num::is(Expr *expr)
+    {
+        return dynamic_cast<Num*>(expr) != nullptr;
+    }
+
+    double Num::get() const
+    {
+        return this->value;
     }
 }

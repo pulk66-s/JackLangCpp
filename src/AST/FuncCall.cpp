@@ -27,7 +27,7 @@ namespace JL::AST {
         return false;
     }
 
-    void FuncCall::gen(struct llvm_context llvm)
+    std::unique_ptr<LLVM::Operand> FuncCall::gen(struct JL::LLVM::llvm_context llvm)
     {
         // TODO
     }

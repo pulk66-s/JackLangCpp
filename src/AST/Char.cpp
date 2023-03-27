@@ -19,7 +19,7 @@ namespace JL::AST {
         return false;
     }
 
-    void Char::gen(struct llvm_context llvm)
+    std::unique_ptr<LLVM::Operand> Char::gen(struct JL::LLVM::llvm_context llvm)
     {
         // TODO
     }
