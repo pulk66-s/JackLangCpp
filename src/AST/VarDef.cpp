@@ -28,7 +28,10 @@ namespace JL::AST {
     {
         std::string name = this->name->getName();
         std::unique_ptr<LLVM::Operand> value = this->value->gen(llvm);
-        std::unique_ptr<LLVM::Alloca> alloca = std::make_unique<LLVM::Alloca>(llvm, std::move(value));
+        std::unique_ptr<LLVM::Operand> valueCopy = std::make_unique<LLVM::Operand>(value->get());
+        std::unique_ptr<LLVM::Alloca> alloca = std::make_unique<LLVM::Alloca>(llvm, std::move(value), name);
+        std::unique_ptr<LLVM::Operand> ptr = std::make_unique<LLVM::Operand>(alloca->get());
+        std::unique_ptr<LLVM::Store> store = std::make_unique<LLVM::Store>(llvm, std::move(valueCopy), std::move(ptr));
         return nullptr;
     }
 };

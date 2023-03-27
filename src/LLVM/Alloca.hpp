@@ -7,6 +7,7 @@
     #include "llvm/IR/IRBuilder.h"
     #include "Operand.hpp"
     #include <memory>
+    #include <string>
 
 namespace JL::LLVM {
     class Alloca {
@@ -14,7 +15,8 @@ namespace JL::LLVM {
             llvm::AllocaInst *llvmAlloca;
 
         public:
-            Alloca(struct llvm_context llvm, std::unique_ptr<Operand> value);
+            Alloca(struct llvm_context llvm, std::unique_ptr<Operand> value, std::string name);
+            llvm::AllocaInst *get();
     };
 };
 

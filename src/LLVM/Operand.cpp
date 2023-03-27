@@ -5,4 +5,9 @@ namespace JL::LLVM {
     {
         return this->value;
     }
+
+    Operand::Operand(llvm::Value *value)
+    {
+        this->value = value;
+    }
 };

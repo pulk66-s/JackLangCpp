@@ -11,6 +11,7 @@ namespace JL::LLVM {
             llvm::Value *value;
 
         public:
+            Operand(llvm::Value *value = nullptr);
             llvm::Value *get();
     };
 };

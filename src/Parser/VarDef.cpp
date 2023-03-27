@@ -38,6 +38,7 @@ namespace JL::Parser {
 
         Many::parse(token, Space::parse);
         try {
+            // std::cout << "Parsing type" << std::endl;
             type = Type::parse(token);
         } catch (Error::Parse &e) {
             token.abort("Expected type", tpos);
@@ -45,6 +46,7 @@ namespace JL::Parser {
 
         Many::parse(token, Space::parse);
         try {
+            // std::cout << "Parsing name" << std::endl;
             name = VarName::parse(token);
         } catch (Error::Parse &e) {
             token.abort("Expected variable name", tpos);
@@ -59,6 +61,7 @@ namespace JL::Parser {
         Many::parse(token, Space::parse);
 
         try {
+            // std::cout << "Parsing value" << std::endl;
             value = VarDef::parseValue(token);
         } catch (Error::Parse &e) {
             token.abort("Expected variable value", tpos);

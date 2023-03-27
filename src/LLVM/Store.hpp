@@ -5,6 +5,7 @@
     #include "Instruction.hpp"
     #include "Type.hpp"
     #include "Operand.hpp"
+    #include "Alloca.hpp"
     #include "llvm.hpp"
     #include "llvm/IR/Module.h"
     #include "llvm/IR/IRBuilder.h"
@@ -14,9 +15,10 @@
 namespace JL::LLVM {
     class Store {
         private:
+            llvm::StoreInst *llvmStore;
 
         public:
-            Store(struct llvm_context llvm, std::unique_ptr<Operand> value);
+            Store(struct llvm_context llvm, std::unique_ptr<Operand> value, std::unique_ptr<Operand> ptr);
     };
 };
 

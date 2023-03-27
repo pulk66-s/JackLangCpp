@@ -14,6 +14,7 @@ namespace JL::LLVM {
             NameGenerator();
             std::string cstNum();
             std::string binop();
+            std::string varDef();
     };
 };
 
