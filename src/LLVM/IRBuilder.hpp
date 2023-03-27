@@ -4,6 +4,7 @@
     #include <memory>
     #include "Context.hpp"
     #include "Block.hpp"
+    #include "Operand.hpp"
     #include "LLVMNamespace.hpp"
     #include "llvm/IR/IRBuilder.h"
     #include "llvm/IR/Module.h"

@@ -1,45 +1,32 @@
 #include "Operation.hpp"
+#include <iostream>
 
 namespace JL::LLVM {
-    void Operation::createIntOperation(IRBuilder builder, char op, Constant left, Constant right)
+    Operation::Operation(struct llvm_context llvm, char op, std::unique_ptr<Operand> left, std::unique_ptr<Operand> right)
     {
+        this->updateValue(llvm, op, std::move(left), std::move(right));
+    }
+
+    void Operation::updateValue(struct llvm_context llvm, char op, std::unique_ptr<Operand> left, std::unique_ptr<Operand> right)
+    {
+        llvm::Value *leftValue = left->get();
+        llvm::Value *rightValue = right->get();
+
         switch (op) {
             case '+':
-                this->result = builder.get()->CreateAdd(left.get(), right.get());
+                this->value = llvm.builder->get()->CreateAdd(leftValue, rightValue);
                 break;
             case '-':
-                this->result = builder.get()->CreateSub(left.get(), right.get());
+                this->value = llvm.builder->get()->CreateSub(leftValue, rightValue);
                 break;
             case '*':
-                this->result = builder.get()->CreateMul(left.get(), right.get());
+                this->value = llvm.builder->get()->CreateMul(leftValue, rightValue);
                 break;
             case '/':
-                this->result = builder.get()->CreateSDiv(left.get(), right.get());
-                break;
-            case '%':
-                this->result = builder.get()->CreateSRem(left.get(), right.get());
+                this->value = llvm.builder->get()->CreateSDiv(leftValue, rightValue);
                 break;
             default:
-                throw Error::NotImplemented("Operation::createIntOperation");
+                throw Error::NotImplemented("Operation not implemented");
         }
-    }
-
-    Operation::Operation(IRBuilder builder, char op, Constant left, Constant right)
-    {
-        std::shared_ptr<Type> ltype = left.getType();
-        std::shared_ptr<Type> rtype = right.getType();
-
-        if (Types::Int::is(*ltype) && Types::Int::is(*rtype)) {
-            this->createIntOperation(builder, op, left, right);
-        }
-    }
-
-    // Operation::Operation(IRBuilder builder, char op, NamedInstruction left, NamedInstruction right)
-    // {
-    // }
-
-    llvm::Value *Operation::get()
-    {
-        return this->result;
     }
 }

@@ -16,8 +16,4 @@ namespace JL::LLVM {
         return this->block;
     }
 
-    // void Block::addInstruction(std::unique_ptr<NamedInstruction> instruction)
-    // {
-    //     // this->block->getInstList().push_back(instruction->get());
-    // }
 };

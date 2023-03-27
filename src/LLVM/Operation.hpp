@@ -2,26 +2,20 @@
     #define __JL_LLVM_OPERATION_HPP__
 
     #include "LLVMNamespace.hpp"
-    #include "IRBuilder.hpp"
-    #include "LLVM/Constant.hpp"
-    #include "Type.hpp"
-    #include "Types/Int.hpp"
+    #include "llvm.hpp"
     #include "Error/NotImplemented.hpp"
     #include "llvm/IR/Module.h"
     #include "llvm/IR/IRBuilder.h"
+    #include "Operand.hpp"
+    #include <memory>
 
 namespace JL::LLVM {
-    class Operation {
+    class Operation : public Operand {
         private:
-            llvm::Value *result = nullptr;
-
-            void createIntOperation(IRBuilder builder, char op, Constant left, Constant right);
+            void updateValue(struct llvm_context llvm, char op, std::unique_ptr<Operand> left, std::unique_ptr<Operand> right);
 
         public:
-            Operation(IRBuilder builder, char op, Constant left, Constant right);
-            // Operation(IRBuilder builder, char op, NamedInstruction left, NamedInstruction right);
-
-            llvm::Value *get();
+            Operation(struct llvm_context llvm, char op, std::unique_ptr<Operand> left, std::unique_ptr<Operand> right);
     };
 };
 
