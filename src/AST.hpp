@@ -3,6 +3,7 @@
 
     #include "AST/Expr.hpp"
     #include "AST/Num.hpp"
+    #include "AST/Type.hpp"
     #include "AST/VarName.hpp"
     #include "AST/VarDef.hpp"
     #include "AST/Line.hpp"

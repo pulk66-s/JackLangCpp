@@ -4,6 +4,7 @@
     #include "ParserNamespace.hpp"
     #include "AST.hpp"
     #include "Token.hpp"
+    #include "Type.hpp"
     #include "Many.hpp"
     #include "Space.hpp"
     #include <memory>

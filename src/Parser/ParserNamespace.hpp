@@ -13,6 +13,7 @@ namespace JL::Parser {
     class IParser;
     class Parser;
     class VarName;
+    class Type;
     class VarDef;
     class BinOp;
     class Ret;

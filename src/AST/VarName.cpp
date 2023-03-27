@@ -1,8 +1,9 @@
 #include "VarName.hpp"
 
 namespace JL::AST {
-    VarName::VarName(std::string name)
+    VarName::VarName(std::unique_ptr<Type> type, std::string name)
     {
+        this->type = std::move(type);
         this->name = name;
     }
 

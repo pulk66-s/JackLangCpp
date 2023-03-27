@@ -3,6 +3,7 @@
 
 namespace JL::AST {
     class Expr;
+    class Type;
     class Num;
     class Binop;
     class VarName;
