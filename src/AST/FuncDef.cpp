@@ -39,6 +39,15 @@ namespace JL::AST {
         return false;
     }
 
+    void FuncDef::generateArgument(struct JL::LLVM::llvm_context llvm, llvm::Argument *arg, std::string name)
+    {
+        std::unique_ptr<LLVM::Operand> operand = std::make_unique<LLVM::Operand>(arg);
+        std::unique_ptr<LLVM::Operand> operandCopy = std::make_unique<LLVM::Operand>(operand->get());
+        std::unique_ptr<LLVM::Alloca> alloca = std::make_unique<LLVM::Alloca>(llvm, std::move(operand), name);
+        std::unique_ptr<LLVM::Operand> allocaoperand = std::make_unique<LLVM::Operand>(alloca->get()); 
+        std::unique_ptr<LLVM::Store> store = std::make_unique<LLVM::Store>(llvm, std::move(operandCopy), std::move(allocaoperand));
+    }
+
     std::unique_ptr<LLVM::Operand> FuncDef::gen(struct JL::LLVM::llvm_context llvm)
     {
         std::string name = this->name->getName();
@@ -49,8 +58,13 @@ namespace JL::AST {
         }
         LLVM::FunctionType funcType(std::move(retType), std::move(args));
         std::unique_ptr<LLVM::Function> func = std::make_unique<LLVM::Function>(funcType, name, *(llvm.mod));
+        std::vector<llvm::Argument *> llvmargs = func->getArguments();
         std::unique_ptr<LLVM::Block> block = std::make_unique<LLVM::Block>(*(llvm.context), "entry", std::move(func));
         llvm.builder->setInsertBlock(std::move(block));
+        int i = 0;
+        for (llvm::Argument *arg : llvmargs) {
+            this->generateArgument(llvm, arg, this->args[i++]->getName());
+        }
         for (auto& expr : body) {
             expr->gen(llvm);
         }

@@ -16,6 +16,8 @@ namespace JL::AST {
             std::vector<std::unique_ptr<VarName>> args;
             std::vector<std::unique_ptr<Expr>> body;
 
+            void generateArgument(struct JL::LLVM::llvm_context llvm, llvm::Argument *arg, std::string name);
+
         public:
             FuncDef(std::unique_ptr<VarName> name, std::vector<std::unique_ptr<VarName>> args, std::vector<std::unique_ptr<Expr>> body);
             void print(std::ostream& os) const;

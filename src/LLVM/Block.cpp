@@ -16,4 +16,8 @@ namespace JL::LLVM {
         return this->block;
     }
 
+    std::unique_ptr<Function> Block::getFunction()
+    {
+        return std::make_unique<Function>(this->block->getParent());
+    }
 };

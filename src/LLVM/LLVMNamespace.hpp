@@ -15,6 +15,7 @@ namespace JL::LLVM {
     class NameGenerator;
     class Instruction;
     class Ret;
+    class Maybe;
     class Store;
     class Alloca;
     // class NamedInstruction;

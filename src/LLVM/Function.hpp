@@ -15,8 +15,10 @@ namespace JL::LLVM {
             llvm::Function *func = nullptr;
 
         public:
+            Function(llvm::Function *func);
             Function(FunctionType type, std::string name, Module module);
             llvm::Function *get();
+            std::vector<llvm::Argument *> getArguments();
     };
 };
 

@@ -52,4 +52,9 @@ namespace JL::Parser {
             this->abort("Expected '" + str + "' but got '" + this->getRest().substr(0, str.length()) + "'", this->pos);
         this->pos += str.length();
     }
+
+    void Token::restore(std::size_t pos)
+    {
+        this->pos = pos;
+    }
 };

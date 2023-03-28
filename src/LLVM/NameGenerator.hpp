@@ -15,6 +15,7 @@ namespace JL::LLVM {
             std::string cstNum();
             std::string binop();
             std::string varDef();
+            std::string arg();
     };
 };
 

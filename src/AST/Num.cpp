@@ -37,7 +37,7 @@ namespace JL::AST {
             std::make_unique<LLVM::Types::Int>(*llvm.context),
             this->value
         );
-        return std::move(constant);
+        return constant;
     }
 
     bool Num::is(Expr *expr)

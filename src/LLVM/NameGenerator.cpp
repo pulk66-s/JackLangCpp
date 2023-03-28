@@ -6,6 +6,7 @@ namespace JL::LLVM {
         this->indexes["cstNum"] = 0;
         this->indexes["binop"] = 0;
         this->indexes["varDef"] = 0;
+        this->indexes["arg"] = 0;
     }
 
     std::string NameGenerator::cstNum()
@@ -21,5 +22,10 @@ namespace JL::LLVM {
     std::string NameGenerator::varDef()
     {
         return "varDef" + std::to_string(this->indexes["varDef"]++);
+    }
+
+    std::string NameGenerator::arg()
+    {
+        return "arg" + std::to_string(this->indexes["arg"]++);
     }
 }

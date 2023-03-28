@@ -18,6 +18,7 @@ namespace JL::LLVM {
             Block(llvm::BasicBlock *block);
 
             // void addInstruction(std::unique_ptr<NamedInstruction> instruction);
+            std::unique_ptr<Function> getFunction();
             llvm::BasicBlock *get() const;
     };
 };
