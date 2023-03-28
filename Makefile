@@ -35,6 +35,7 @@ SRC_FILES	= src/File.cpp \
 			$(LLVM)/Ret.cpp \
 			$(LLVM)/Alloca.cpp \
 			$(LLVM)/Store.cpp \
+			$(LLVM)/Load.cpp \
 			$(AST)/Type.cpp \
 			$(AST)/FuncDef.cpp \
 			$(AST)/Ret.cpp \

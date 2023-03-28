@@ -18,8 +18,10 @@ namespace JL::Parser {
                 return VarName::parse(token);
             }
         };
+        int i = 0;
         for (auto parser : parsers) {
             try {
+                std::cout << "i: " << i++ << std::endl;
                 return parser();
             } catch (Error::Parse &e) {
                 continue;
@@ -32,6 +34,7 @@ namespace JL::Parser {
     std::unique_ptr<AST::Ret> Ret::parse(Token &token)
     {
         std::size_t tpos = token.save();
+        Many::parse(token, Space::parse);
         token.expect("return");
         std::unique_ptr<AST::Expr> expr = Ret::parseExpr(token);
         return std::make_unique<AST::Ret>(std::move(expr));

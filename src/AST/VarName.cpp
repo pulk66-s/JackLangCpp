@@ -27,7 +27,14 @@ namespace JL::AST {
 
     std::unique_ptr<LLVM::Operand> VarName::gen(struct JL::LLVM::llvm_context llvm)
     {
-        return nullptr;
+        std::cout << "VarName::gen " << this->name << std::endl;
+        std::shared_ptr<LLVM::Operand> operand = llvm.nameGenerator->getOperand(name);
+        if (operand == nullptr) {
+            throw std::runtime_error("Variable " + name + " is not defined");
+        }
+        std::unique_ptr<LLVM::Operand> ptr = std::make_unique<LLVM::Operand>();
+        std::unique_ptr<LLVM::Load> load = std::make_unique<LLVM::Load>(llvm, std::move(ptr), std::make_unique<LLVM::Operand>(*operand));
+        return load->get();
     }
 
     std::string VarName::getName() const

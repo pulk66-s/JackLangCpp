@@ -30,7 +30,7 @@ namespace JL::AST {
         std::unique_ptr<LLVM::Operand> leftOperand = this->left->gen(llvm);
         std::unique_ptr<LLVM::Operand> rightOperand = this->right->gen(llvm);
         if (!leftOperand || !rightOperand)
-            throw std::runtime_error("Binop: Invalid operand");
+            throw Error::NotImplemented("Binop: Invalid operand");
         return std::make_unique<LLVM::Operation>(llvm, op, std::move(leftOperand), std::move(rightOperand));
     }
 }

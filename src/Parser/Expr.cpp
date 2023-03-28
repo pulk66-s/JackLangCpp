@@ -12,13 +12,16 @@ namespace JL::Parser {
                 return Line::parse(token);
             }
         };
+        // int i = 0;
         for (auto parser : parsers) {
             try {
+                // std::cout << "i: " << i++ << std::endl;
                 return parser();
             } catch (Error::Parse &e) {
                 continue;
             }
         }
+        std::cout << "tok: " << token.getRest() << std::endl;
         token.abort("Expected expression 1", tpos);
         return nullptr; // Never reached
     }

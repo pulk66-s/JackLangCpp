@@ -16,5 +16,6 @@
     #include "LLVM/Ret.hpp"
     #include "LLVM/Alloca.hpp"
     #include "LLVM/Store.hpp"
+    #include "LLVM/Load.hpp"
 
 #endif

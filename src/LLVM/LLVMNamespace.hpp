@@ -18,6 +18,7 @@ namespace JL::LLVM {
     class Maybe;
     class Store;
     class Alloca;
+    class Load;
     // class NamedInstruction;
     namespace Types {
         class Int;

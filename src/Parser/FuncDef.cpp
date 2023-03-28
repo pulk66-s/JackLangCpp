@@ -11,6 +11,7 @@ namespace JL::Parser {
 
         Many::parse(token, Space::parse);
         try {
+            std::cout << "Parsing function return type" << std::endl;
             type = Type::parse(token);
         } catch (Error::Parse &e) {
             std::cerr << e.what() << std::endl;
@@ -19,6 +20,7 @@ namespace JL::Parser {
 
         Many::parse(token, Space::parse);
         try {
+            std::cout << "Parsing function name" << std::endl;
             name = VarName::parse(token);
         } catch (Error::Parse &e) {
             std::cerr << e.what() << std::endl;
@@ -34,6 +36,7 @@ namespace JL::Parser {
 
         Many::parse(token, Space::parse);
         try {
+            std::cout << "Parsing function arguments" << std::endl;
             while (true) {
                 args.push_back(VarName::parse(token));
                 Many::parse(token, Space::parse);
@@ -54,6 +57,7 @@ namespace JL::Parser {
 
         Many::parse(token, Space::parse);
         try {
+            std::cout << "Parsing function body" << std::endl;
             body = Many::parse(token, Expr::parse);
             Many::parse(token, Space::parse);
         } catch (Error::Parse &e) {
@@ -67,6 +71,7 @@ namespace JL::Parser {
         } catch (Error::Parse &e) {
             token.abort("Expected }", tpos);
         }
+        std::cout << "Parsed function" << std::endl;
         return std::make_unique<AST::FuncDef>(std::move(name), std::move(args), std::move(body));
     }
 };
